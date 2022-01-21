@@ -18,10 +18,14 @@
     </style>
 </head>
 <body>
+    
     <canvas id="c"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" ></script>
     <script  src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script   >
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries()); 
+        var url = params.image;
         function main () { 
 
             const canvas = document.getElementById("c");
@@ -43,7 +47,8 @@
             const loader = new THREE.TextureLoader();
             const texture = loader.load(
                 //"https://cdna.artstation.com/p/assets/images/images/014/761/238/large/raluca-stefan-46804810-2437685679607377-8213757029521555456-o.jpg?1545337156",
-                "./test2.jpg",
+                //"./test2.jpg",
+                url,
                 () => {
                     const rt = new THREE.WebGLCubeRenderTarget( texture.image.height);
                     rt.fromEquirectangularTexture(renderer , texture);
